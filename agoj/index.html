@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Argentium Online Judge</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Poppins:wght@600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link rel="icon" href="./images/logo.png" type="image/png" sizes="any"> 
+    <style>
+        html {
+            scroll-behavior: smooth; /* For smooth scrolling */
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(to right, #ece9e6, #ffffff); /* Light background for default */
+            transition: background-color 0.3s ease, color 0.3s ease; /* Smooth transition for body background and text color */
+        }
+        body.dark-mode { /* Changed selector for specificity */
+            background: linear-gradient(to right, #2c3e50, #34495e); /* Dark background */
+            color: #ecf0f1;
+        }
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Poppins', sans-serif;
+        }
+        .gradient-bg {
+            background: linear-gradient(to right, #6a11cb, #2575fc);
+            transition: background 0.3s ease; /* Smooth transition for gradient background */
+        }
+        body.dark-mode .gradient-bg {
+            background: linear-gradient(to right, #4a0d8a, #1a56a6); /* Darker gradient for dark mode */
+        }
+        /* For the "Sẵn sàng trải nghiệm? Tải ngay!" section */
+        .download-section-bg {
+            background: linear-gradient(to right, #3b82f6, #2563eb); /* Default blue gradient */
+            transition: background 0.3s ease;
+        }
+        body.dark-mode .download-section-bg {
+            background: linear-gradient(to right, #1e40af, #1a56a6); /* Darker blue gradient for dark mode */
+        }
+
+        .download-btn {
+            transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease, color 0.3s ease; /* Added color transition */
+        }
+        .download-btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+        /* Dark mode specific styles */
+        body.dark-mode .bg-white {
+            background-color: #1a202c;
+            color: #ecf0f1;
+            transition: background-color 0.3s ease, color 0.3s ease; /* Smooth transition */
+        }
+        body.dark-mode .shadow-md {
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.3), 0 2px 4px -1px rgba(0, 0, 0, 0.18);
+        }
+        body.dark-mode .text-gray-900 {
+            color: #ecf0f1;
+            transition: color 0.3s ease; /* Smooth transition */
+        }
+        body.dark-mode .text-gray-600 {
+            color: #bdc3c7;
+            transition: color 0.3s ease; /* Smooth transition */
+        }
+        body.dark-mode .bg-gray-200 {
+            background-color: #4a5568;
+            transition: background-color 0.3s ease; /* Smooth transition */
+        }
+        /* Ensure this selector targets the button text correctly */
+        body.dark-mode #darkModeToggle .text-gray-700 {
+             color: #ecf0f1;
+             transition: color 0.3s ease; /* Smooth transition */
+        }
+        body.dark-mode .text-gray-700 { /* General text-gray-700 in dark mode */
+            color: #bdc3c7; /* Adjusted for better readability if it's for general text */
+            transition: color 0.3s ease; /* Smooth transition */
+        }
+        body.dark-mode .feature-text-color { /* Custom class for feature text if needed */
+             color: #bdc3c7;
+             transition: color 0.3s ease; /* Smooth transition */
+        }
+
+        body.dark-mode .dark-mode\:text-white { /* This is a Tailwind utility, should work if dark mode class is on body */
+            color: #ecf0f1;
+        }
+        body.dark-mode .dark-mode\:bg-gray-700 { /* Tailwind utility */
+            background-color: #4a5568;
+        }
+        body.dark-mode .dark-mode\:text-gray-400 { /* Tailwind utility */
+            color: #a0aec0;
+        }
+        body.dark-mode .dark-mode\:bg-gray-900 { /* Tailwind utility */
+            background-color: #1a202c;
+            transition: background-color 0.3s ease; /* Smooth transition */
+        }
+        body.dark-mode .text-gray-800 {
+            color: #ecf0f1;
+            transition: color 0.3s ease; /* Smooth transition */
+        }
+        /* Removed specific bg-blue-500/700 dark mode rules as download-section-bg handles it */
+        body.dark-mode .download-btn.bg-white { /* Specific for download buttons */
+            background-color: #374151; /* Dark gray for buttons */
+            color: #93c5fd; /* Light blue text */
+            transition: background-color 0.3s ease, color 0.3s ease; /* Smooth transition */
+        }
+        body.dark-mode .download-btn.bg-white.text-green-600 {
+             background-color: #374151; /* Dark gray for buttons */
+            color: #6ee7b7; /* Light green text */
+        }
+        body.dark-mode .download-btn.bg-white:hover {
+            background-color: #4b5563; /* Slightly lighter gray on hover */
+        }
+        body.dark-mode .bg-gray-800 {
+            background-color: #111827; /* Even darker for footer */
+            transition: background-color 0.3s ease; /* Smooth transition */
+        }
+         body.dark-mode .dark-mode\:bg-gray-950 { /* Tailwind utility for footer in dark mode */
+            background-color: #030712; /* Very dark */
+        }
+        body.dark-mode .text-gray-300 {
+            color: #d1d5db;
+            transition: color 0.3s ease; /* Smooth transition */
+        }
+        body.dark-mode .text-blue-400 {
+            color: #60a5fa;
+            transition: color 0.3s ease; /* Smooth transition */
+        }
+
+        /* Custom scrollbar for better aesthetics */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #888;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #555;
+        }
+        body.dark-mode ::-webkit-scrollbar-track {
+            background: #2c3e50; /* Dark track for dark mode */
+        }
+        body.dark-mode ::-webkit-scrollbar-thumb {
+            background: #555; /* Darker thumb */
+        }
+        body.dark-mode ::-webkit-scrollbar-thumb:hover {
+            background: #777;
+        }
+    </style>
+</head>
+<body class="text-gray-800">
+    <header class="bg-white shadow-md py-4 sticky top-0 z-50 transition-colors duration-300 dark:bg-gray-800 dark:text-white">
+        <div class="container mx-auto flex justify-between items-center px-6">
+            <div class="flex items-center">
+                <div class="mr-4">
+                    <img src="./images/logo.png" 
+                         alt="Logo Chấm bài online" class="h-10 w-auto" 
+                         loading="lazy">
+                </div>
+                <a href="#" class="text-2xl font-bold text-gray-900 transition-colors duration-300 dark:text-white">Argentium Online Judge</a>
+                <span class="ml-4 text-gray-600 text-sm hidden sm:block transition-colors duration-300 dark:text-gray-400">Phần mềm chấm bài Tin học - Trường THPT Chu Văn An</span>
+            </div>
+            <button id="darkModeToggle" class="p-2 rounded-full bg-gray-200 text-gray-700 focus:outline-none transition-colors duration-300 dark:bg-gray-700 dark:text-white">
+                <i class="fas fa-moon"></i> <i class="fas fa-sun hidden"></i>
+            </button>
+        </div>
+    </header>
+
+    <section class="py-20 gradient-bg text-white text-center transition-colors duration-300" data-aos="fade-up">
+        <div class="container mx-auto px-6">
+            <img src="./images/banner.gif" 
+                 alt="Banner Argentium Online Judge" 
+                 class="w-full max-w-3xl mx-auto rounded-lg shadow-xl mb-8"
+                 loading="lazy">
+            
+            <h1 class="text-5xl font-extrabold mb-4 leading-tight">Phần mềm hỗ trợ bồi dưỡng HSG môn Tin học</h1>
+            <p class="text-xl mb-8 max-w-2xl mx-auto">
+                Mô phỏng các chức năng của phần mềm nộp bài Kỳ thi HSG Tin học cấp tỉnh và bổ sung một số chức năng khác để phục vụ công tác đào tạo đội tuyển.
+            </p>
+            <div class="flex flex-col sm:flex-row justify-center space-y-4 sm:space-y-0 sm:space-x-6 mt-10">
+                <a href="https://example.com/cham-bai-online-windows.exe" download class="download-btn bg-blue-600 hover:bg-blue-700 text-white font-bold py-4 px-8 rounded-lg shadow-lg flex items-center justify-center">
+                    <i class="fab fa-windows text-2xl mr-3"></i> Tải về cho Windows (.exe)
+                </a>
+                <a href="https://example.com/cham-bai-online-linux.AppImage" download class="download-btn bg-green-600 hover:bg-green-700 text-white font-bold py-4 px-8 rounded-lg shadow-lg flex items-center justify-center">
+                    <i class="fab fa-linux text-2xl mr-3"></i> Tải về cho Linux (.AppImage)
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-20 transition-colors duration-300 dark:bg-gray-900 dark:text-white" id="features">
+        <div class="container mx-auto px-6">
+            <h2 class="text-4xl font-bold text-center mb-12 transition-colors duration-300 dark:text-white" data-aos="fade-down">Tính năng nổi bật</h2>
+
+            <div class="flex flex-col md:flex-row items-center justify-between mb-20 md:gap-12">
+                <div class="md:w-1/2 md:pr-10 mb-8 md:mb-0" data-aos="fade-right">
+                    <h3 class="text-3xl font-bold mb-4 transition-colors duration-300 dark:text-white">Chấm điểm bằng phần mềm Themis như thi thật</h3>
+                    <p class="text-lg text-gray-700 feature-text-color transition-colors duration-300 dark:text-gray-300">
+                        Phần mềm chấm bài làm của thí sinh thông qua phần mềm chấm bài thi HSG Tin học cấp tỉnh chính thức - Themis. Cho ra kết quả chuẩn xác và nhanh nhất. Tiện lợi cho giáo viên tổng hợp bài làm và chấm bài cho học sinh.
+                    </p>
+                </div>
+                <div class="md:w-1/2 flex justify-center" data-aos="fade-left">
+                    <img src="./timages/hemis.png" 
+                         alt="Phần mềm chấm bài Themis" class="rounded-lg shadow-xl w-full"
+                         loading="lazy">
+                </div>
+            </div>
+
+            <div class="flex flex-col md:flex-row-reverse items-center justify-between mb-20 md:gap-12">
+                <div class="md:w-1/2 md:pl-10 mb-8 md:mb-0" data-aos="fade-left">
+                    <h3 class="text-3xl font-bold mb-4 transition-colors duration-300 dark:text-white">Hệ thống mượt mà và giao diện hiện đại</h3>
+                    <p class="text-lg text-gray-700 feature-text-color transition-colors duration-300 dark:text-gray-300">
+                        Giao diện được thiết kế theo phong cách hiện đại, bắt mắt người dùng và trực quang. Giúp giáo viên và học sinh dễ dàng nắm bắt cách sử dụng và vận hành. Ngoài ra, hệ thống còn được thiết kế mạnh mẽ, có thể hoạt động với tần suất cao và lưu lượng truy cập cùng lúc lớn, giúp phần mềm có thể dùng để tổ chức các hoạt động và kỳ thi lớn như: Giao lưu các câu lạc bộ, Học sinh giỏi cấp trường, Học sinh giỏi cấp huyện, ...
+                    </p>
+                </div>
+                <div class="md:w-1/2 flex justify-center" data-aos="fade-right">
+                    <img src="./images/giaodien.png" 
+                         alt="Giao diện phần mềm" class="rounded-lg shadow-xl max-h-128 w-auto mx-auto"
+                         loading="lazy">
+                </div>
+            </div>
+
+            <div class="flex flex-col md:flex-row items-center justify-between md:gap-12">
+                <div class="md:w-1/2 md:pr-10 mb-8 md:mb-0" data-aos="fade-right">
+                    <h3 class="text-3xl font-bold mb-4 transition-colors duration-300 dark:text-white">Thống kê bảng điểm chi tiết</h3>
+                    <p class="text-lg text-gray-700 feature-text-color transition-colors duration-300 dark:text-gray-300">
+                        Phần mềm cung cấp thông tin bảng rank trực tiếp cho thí sinh và giao viên theo dõi. Ngoài ra, giáo viên cũng có thể quản lý các thông tin một cách trực quan bằng cách xuất ra dạng biểu đồ và mẫu thông tin tạo tài khoản, ...
+                    </p>
+                </div>
+                <div class="md:w-1/2 flex justify-center" data-aos="fade-left">
+                     <img src="./images/rank.png" 
+                         alt="Giao diện bảng rank" class="rounded-lg shadow-xl max-h-128 w-auto mx-auto"
+                         loading="lazy">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-16 download-section-bg text-white text-center transition-colors duration-300" id="download" data-aos="fade-up">
+        <div class="container mx-auto px-6">
+            <h2 class="text-4xl font-bold mb-8">Sẵn sàng trải nghiệm? Tải ngay!</h2>
+            <div class="flex flex-col sm:flex-row justify-center space-y-4 sm:space-y-0 sm:space-x-6">
+                <a href="https://example.com/cham-bai-online-windows.exe" download 
+                   class="download-btn bg-white hover:bg-gray-100 text-blue-600 font-bold py-4 px-8 rounded-lg shadow-lg flex items-center justify-center dark:bg-gray-700 dark:text-blue-300 dark:hover:bg-gray-600">
+                    <i class="fab fa-windows text-2xl mr-3"></i> Tải về cho Windows (.exe)
+                </a>
+                <a href="https://example.com/cham-bai-online-linux.AppImage" download 
+                   class="download-btn bg-white hover:bg-gray-100 text-green-600 font-bold py-4 px-8 rounded-lg shadow-lg flex items-center justify-center dark:bg-gray-700 dark:text-green-300 dark:hover:bg-gray-600">
+                    <i class="fab fa-linux text-2xl mr-3"></i> Tải về cho Linux (.AppImage)
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-gray-800 text-gray-300 py-8 transition-colors duration-300 dark:bg-gray-950">
+        <div class="container mx-auto text-center px-6">
+            <p>&copy; 2025 Argentium Online Judge. Mọi quyền được bảo lưu.</p>
+            <!-- <p class="mt-2">
+                <a href="https://github.com/your-github-profile/cham-bai-online" target="_blank" class="text-blue-400 hover:underline">Dự án GitHub</a> |
+                <a href="#" class="text-blue-400 hover:underline">Giấy phép (MIT)</a>
+            </p> -->
+        </div>
+    </footer>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init({
+            duration: 1000, // Animation duration
+            once: false,    // CHỈNH SỬA: false để hiệu ứng lặp lại
+            mirror: true,  // CHỈNH SỬA: true để hiệu ứng xảy ra khi cuộn ngược lại
+        });
+
+        // Dark mode toggle functionality
+        const darkModeToggle = document.getElementById('darkModeToggle');
+        const sunIcon = darkModeToggle.querySelector('.fa-sun');
+        const moonIcon = darkModeToggle.querySelector('.fa-moon');
+
+        // Function to update icons and body class based on theme
+        function applyTheme(isDarkMode) {
+            if (isDarkMode) {
+                document.body.classList.add('dark-mode');
+                document.documentElement.classList.add('dark'); 
+                sunIcon.classList.remove('hidden');
+                moonIcon.classList.add('hidden');
+            } else {
+                document.body.classList.remove('dark-mode');
+                document.documentElement.classList.remove('dark');
+                sunIcon.classList.add('hidden');
+                moonIcon.classList.remove('hidden');
+            }
+        }
+
+        darkModeToggle.addEventListener('click', () => {
+            const isDarkMode = !document.body.classList.contains('dark-mode');
+            localStorage.setItem('theme', isDarkMode ? 'dark' : 'light');
+            applyTheme(isDarkMode);
+        });
+
+        // Check for saved theme preference or system preference on load
+        const savedTheme = localStorage.getItem('theme');
+        const prefersDarkScheme = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+        let initialThemeIsDark = false;
+
+        if (savedTheme === 'dark') {
+            initialThemeIsDark = true;
+        } else if (savedTheme === 'light') {
+            initialThemeIsDark = false;
+        } else {
+            initialThemeIsDark = prefersDarkScheme; 
+        }
+        
+        applyTheme(initialThemeIsDark); 
+    </script>
+</body>
+</html>
