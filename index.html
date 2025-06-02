@@ -143,53 +143,10 @@
             transform: translateY(-4px);
             /* Increased lift */
         }
-
-        /* Loading Overlay Styles - ENHANCED */
-        #loading-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(var(--bg-rgb), 0.95); /* Use theme's background with high opacity */
-            backdrop-filter: blur(8px); /* Subtle blur effect */
-            -webkit-backdrop-filter: blur(8px); /* For Safari */
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            z-index: 10000; /* Ensure it's on top of everything */
-            opacity: 1;
-            transition: opacity 0.7s ease-out; /* Smoother fade-out */
-        }
-
-        .spinner {
-            border: 6px solid rgba(var(--bg-rgb), 0.3); /* Thicker, semi-transparent border */
-            border-top: 6px solid var(--primary-color); /* Primary color for top part */
-            border-right: 6px solid var(--accent-color); /* Accent color for right part */
-            border-radius: 50%;
-            width: 60px; /* Larger spinner */
-            height: 60px; /* Larger spinner */
-            animation: spin 1.2s cubic-bezier(0.5, 0.15, 0.5, 0.85) infinite; /* Slightly slower, smoother spin */
-            box-shadow: 0 0 15px rgba(var(--bg-rgb), 0.2), 0 0 5px rgba(var(--bg-rgb), 0.1); /* Subtle shadow */
-        }
-
-        @keyframes spin {
-            0% {
-                transform: rotate(0deg);
-            }
-            100% {
-                transform: rotate(360deg);
-            }
-        }
     </style>
 </head>
 
 <body>
-    <div id="loading-overlay">
-        <div class="spinner"></div>
-        <p class="text-2xl font-bold mt-6 text-primary">Đang tải...</p> </div>
-
     <header class="header-bg shadow-sm py-4 px-6 md:px-12 lg:px-24 flex justify-between items-center sticky top-0 z-50">
         <div class="flex items-center">
             <img src="./images/AGOJ - logo.png" alt="Logo Argentium Online Judge" class="h-10 w-auto rounded-md mr-3 object-contain"
@@ -415,15 +372,6 @@
                     localStorage.setItem('theme', 'dark');
                     themeToggle.innerHTML = '<i class="fas fa-sun"></i>'; // Switch to sun icon
                 }
-            });
-
-            // Hide loading overlay when the page is fully loaded
-            window.addEventListener('load', () => {
-                const loadingOverlay = document.getElementById('loading-overlay');
-                loadingOverlay.style.opacity = '0'; // Start fade out
-                setTimeout(() => {
-                    loadingOverlay.style.display = 'none'; // Hide after transition
-                }, 700); // Match CSS transition duration for smoother fade
             });
         });
     </script>
